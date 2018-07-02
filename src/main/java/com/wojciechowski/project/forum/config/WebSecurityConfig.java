@@ -45,7 +45,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                     .and()
                 .logout()
                 	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .permitAll();
+                    .permitAll()
+        			.and()
+        		.csrf()
+        			.ignoringAntMatchers("/h2-console/**")
+        			.and()
+        		.headers()
+        			.frameOptions()
+        			.sameOrigin();
     }
 
 }

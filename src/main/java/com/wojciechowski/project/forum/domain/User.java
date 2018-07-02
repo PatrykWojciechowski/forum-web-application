@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -18,10 +20,10 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude= {"roles"})
+@EqualsAndHashCode(exclude= {"topic","answer"})
 public class User {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotNull(message="Username is required.")
 	@Length(min=5, max =30, message="Your unsername should be between 5 and 30 characters.")
@@ -32,4 +34,10 @@ public class User {
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+    
+    @OneToMany(mappedBy = "user")
+    private Set<Answer> answer;
+    
+    @OneToMany(mappedBy = "user")
+    private Set<Topic> topic;
 }
