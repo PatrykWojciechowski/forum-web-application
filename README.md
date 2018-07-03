@@ -1,6 +1,6 @@
 # Example of simple web forum // work in progress //
 
-This is example of simple internet forum which I am creating only for educational purpouses. 
+This is an example of a simple internet forum which I am creating only for educational purpouses. 
 
 ## Stack
 
