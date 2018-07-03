@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class LoginController {
+public class TopicsController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-    public String registration() {
-        return "homepage";
+	@RequestMapping(value = "/topics", method = RequestMethod.GET)
+    public String showTopics() {
+        return "topics";
     }
 	
 }
