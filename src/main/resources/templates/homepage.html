@@ -1,23 +1,116 @@
-v<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Welcome!</title>
-
-  	<!-- Bootstrap 4 css -->
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-
-      
-</head>
-<body>
-
-	<div class="container-fluid" style="margin-top: 20px">
-	<h1>Welcome!</h1>
-	</div>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head> 
+		<meta charset="UTF-8" />
+		<title>ITForum</title>		 
+		
+		<!--  <link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" ></link> -->
+		<!-- custom font -->
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
+		<!-- Bootstrap CSS -->
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    	<!-- Font awesome -->
+    	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" 
+    	integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" 
+    	crossorigin="anonymous">
+    	
+    	<style>
+    	.body{
+    	background-color: rgb(242, 242, 242);
+    	}
+    	.infoSection{
+		width: 100%;
+		background-color: #bfbfbf;
+		overflow:auto;
+		}
+		.info{
+		width: 1000px;
+		margin: auto;
+		}
+		.footer{
+	 	color: white;
+	 	height: 60px;
+		}
+    	</style>
+	</head>
 	
-  <!-- Bootstrap 4 js -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>    
-</body>
+	<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	    <div class="container">
+	    <a class="navbar-brand" href="#"><i class="fas fa-align-justify"></i> <b>Forum</b></a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item">
+	          <a class="nav-link" href="#">Ranking</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="#">Hot</a>
+	        </li>
+	          <li class="nav-item">
+	          <a class="nav-link" href="#">Search</a>
+	        </li>
+	      </ul>
+	      <ul class="navbar-nav ml-auto">
+	        <li class="nav-item">
+	          <a class="nav-link" href="#">Profile</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="#">Logout</a>
+	        </li>
+	      </ul>
+	    </div>
+	    </div>
+  	</nav>
+  	<div class="container_fluid py-4" style="background-color: #efefef;"> <!-- first container -->
+  	
+  	<div class="card mx-auto" style="width: 70%;">
+	  	<div class="card-header bg-dark" style="color: white;">
+	    Sections
+	  	</div>
+  	<th:block th:each="section : ${sections}" >
+  	<ul class="list-group list-group-flush">
+  		<li class="list-group-item">
+  		<h5><span th:text="${section.name}">Section 1</span>  <a href="#" class="btn btn-dark btn-sm">Enter section</a></h5> 
+  		<p class="card-text"><span th:text="${section.description}"></span></p>
+  		
+    	</li>
+  	</ul>
+  	</th:block>
+  	</div>
+
+	</div> <!--  end of first fluid container -->
+	<div class="container_fluid about py-4"> <!-- second container -->
+	<div class="row mx-auto" style="width: 70%;">
+				<div class="col-8">
+						<h2>About us</h2>
+						<span>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+							nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
+							esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+							culpa qui officia deserunt mollit anim id est laborum.
+						</span>
+				</div>
+				<div class="col-4">
+						<h2>Statistics</h2>
+						<p>
+							Total members: 23
+						</p>
+						<p>
+							Total posts: 35
+						</p>
+				</div>		
+	</div> <!--  end of row -->
+	</div> <!--  end of second contaier fluid -->
+    <footer class="footer pt-3 bg-dark fixed-bottom" style="color: white; height: 60px;" >
+      <div class="container" style="width: 70%;">
+        <p>2018 | Created by Patryk Wojciechowski</p>
+      </div>
+    </footer>
+	</body>
 </html>
