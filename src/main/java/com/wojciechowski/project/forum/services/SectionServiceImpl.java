@@ -5,10 +5,12 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.wojciechowski.project.forum.domain.Section;
 import com.wojciechowski.project.forum.repositories.SectionRepository;
 
+@Service
 public class SectionServiceImpl implements SectionService {
 
 	private SectionRepository sectionRepository;
