@@ -18,10 +18,15 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
-@EqualsAndHashCode(exclude= {"section","answer","user"})
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(exclude= {"section","answers","user"})
 public class Topic {
 	
 	@Id
@@ -35,7 +40,7 @@ public class Topic {
 	private Section section;
 	
 	@OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
-	private Set<Answer> answer;
+	private Set<Answer> answers;
 	
 	private String title;
 	

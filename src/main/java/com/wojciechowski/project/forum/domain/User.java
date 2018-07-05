@@ -17,9 +17,14 @@ import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @EqualsAndHashCode(exclude= {"topic","answer"})
 public class User {
 	@Id

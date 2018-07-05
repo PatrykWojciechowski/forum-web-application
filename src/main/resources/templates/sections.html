@@ -18,7 +18,8 @@
     	
     	<style>
     	.body{
-    	background-color: rgb(242, 242, 242);
+    	background-color: #f2f2f2;
+    	font-family: 'Lato', sans-serif;
     	}
     	.infoSection{
 		width: 100%;
@@ -37,6 +38,7 @@
 	</head>
 	
 	<body>
+	<div class="container_fluid" style="height: 100vh; background-color: #efefef;">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	    <div class="container">
 	    <a class="navbar-brand" href="#"><i class="fas fa-align-justify"></i> <b>Forum</b></a>
@@ -60,31 +62,30 @@
 	          <a class="nav-link" href="#">Profile</a>
 	        </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="#">Logout</a>
+	          <a class="nav-link" href="#" th:href="@{'/logout'}">Logout</a>
 	        </li>
 	      </ul>
 	    </div>
 	    </div>
   	</nav>
-  	<div class="container_fluid py-4" style="background-color: #efefef;"> <!-- first container -->
+  	<div class="container_fluid py-4" > <!-- first container -->
   	
-  	<div class="card mx-auto" style="width: 70%;">
+  	<div class="card mx-auto my-4" style="width: 70%;">
 	  	<div class="card-header bg-dark" style="color: white;">
 	    Sections
 	  	</div>
   	<th:block th:each="section : ${sections}" >
   	<ul class="list-group list-group-flush">
   		<li class="list-group-item">
-  		<h5><span th:text="${section.name}">Section 1</span>  <a href="#" class="btn btn-dark btn-sm">Enter section</a></h5> 
+  		<h5><a th:href="@{'/section/'+${section.id}+'/show-topics'}"><span th:text="${section.name}">Section 1</span></a></h5> 
   		<p class="card-text"><span th:text="${section.description}"></span></p>
-  		
     	</li>
   	</ul>
   	</th:block>
   	</div>
 
 	</div> <!--  end of first fluid container -->
-	<div class="container_fluid about py-4"> <!-- second container -->
+	<div class="container_fluid py-4 position-absolute" style="bottom: 60px; background-color: white; border-top: 2px solid #cecece;"> <!-- second container -->
 	<div class="row mx-auto" style="width: 70%;">
 				<div class="col-8">
 						<h2>About us</h2>
@@ -97,12 +98,10 @@
 						</span>
 				</div>
 				<div class="col-4">
-						<h2>Statistics</h2>
+						<h2>Contact</h2>
 						<p>
-							Total members: 23
-						</p>
-						<p>
-							Total posts: 35
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+							labore et dolore magna aliqua.	
 						</p>
 				</div>		
 	</div> <!--  end of row -->
@@ -112,5 +111,6 @@
         <p>2018 | Created by Patryk Wojciechowski</p>
       </div>
     </footer>
+    </div>
 	</body>
 </html>

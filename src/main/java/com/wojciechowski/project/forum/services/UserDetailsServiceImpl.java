@@ -16,8 +16,6 @@ import com.wojciechowski.project.forum.domain.Role;
 import com.wojciechowski.project.forum.domain.User;
 import com.wojciechowski.project.forum.repositories.UserRepository;
 
-
-
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

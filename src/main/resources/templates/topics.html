@@ -22,9 +22,10 @@
     <title>Internet Java Forum</title>
   </head>
   <body>
+  <div class="container_fluid" style="height: 100vh; background-color: #efefef;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-    <a class="navbar-brand" href="#"><i class="fas fa-align-justify"></i> <b>Forum</b></a>
+    <a class="navbar-brand" th:href="@{'/'}"><i class="fas fa-align-justify"></i> <b>Forum</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -45,66 +46,52 @@
           <a class="nav-link" href="#">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" th:href="@{'/logout'}">Logout</a>
         </li>
       </ul>
     </div>
+    </div>
   </nav>
 
-  <br/>
-
-  <div class="container" style="width: 85%;">
-  <div class="alert alert-info" role="alert">
-    Hi, user! What would you like to do? :)
-  </div>
-
-  <table class="table table-striped mx-auto">
-    <thead class="thead">
-      <tr class="d">
-        <th scope="col"></th>
-        <th scope="col" style="width: 70%;">Section 1</th>
-        <th scope="col">Answers</th>
-        <th scope="col">Author</th>
-        <th scope="col">Created</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row"><i class="far fa-comments"></i></th>
-        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</td>
-        <td>2</td>
-        <td>Mark</td>
-        <td>24.06.2018</td>
-      </tr>
-      <tr>
-        <th scope="row"><i class="far fa-comments"></i></th>
-        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</td>
-        <td>5</td>
-        <td>Jacob</td>
-        <td>24.06.2018</td>
-      </tr>
-      <tr>
-        <th scope="row"><i class="far fa-comments"></i></th>
-        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</td>
-        <td>12</td>
-        <td>Larry</td>
-        <td>24.06.2018</td>
-      </tr>
-      <tr>
-        <th scope="row"><i class="far fa-comments"></i></th>
-        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</td>
-        <td>0</td>
-        <td>Larry</td>
-        <td>24.06.2018</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <br/>
-
-  <div class="mx-auto">
-    <button type="button" class="btn btn-secondary">New Topic</button>
-    <button type="button" class="btn btn-secondary">Go Back</button>
+  <div class="container mt-4" style="width: 85%;">
+                    <div class="table-responsive table-light" th:if="${not #sets.isEmpty(section.topics)}"> 
+                        <table class="table table-hover text-center table-bordered mb-0" style="border: 2px solid #cecece;">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th></th>
+                                <th class="text-left">Title</th>
+                                <th>Answers</th>
+                                <th>Author</th>
+                                <th>Created</th>
+                            </tr>
+                            </thead>
+                            <tr th:remove="all">
+                                <th scope="row"><i class="far fa-comments"></i></th>
+						        <td class="text-left"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></td>
+						        <td>2</td>
+						        <td>Mark</td>
+						        <td>24.06.2018</td>
+                            </tr>
+                            <tr th:remove="all">
+                                <th scope="row"><i class="far fa-comments"></i></th>
+						        <td class="text-left"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></td>
+						        <td>2</td>
+						        <td>Mark</td>
+						        <td>24.06.2018</td>
+                            </tr>
+                            <tr th:each="topic : ${section.topics}">
+                                <th scope="row"><i class="far fa-comments"></i></th>
+                                <td class="text-left" th:text="${topic.title}">Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                                <td th:text="${#sets.size(topic.answers)}">12</td>
+                                <td th:text="${topic.user.username}">Paul</td>
+                                <td th:text="${#dates.format(topic.createTime, 'dd-MM-yyyy HH:mm')}">24.06.2018</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+  <div class="mx-auto mt-3">
+	<a href="#" th:href="@{'/new-topic'}" class="btn btn-secondary">New Topic</a>
+    <a href="#" th:href="@{'/'}" class="btn btn-secondary">Go Back</a>
   </div>
 
   </div>
@@ -113,6 +100,7 @@
         <p>2018 | Created by Patryk Wojciechowski</p>
       </div>
     </footer>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
